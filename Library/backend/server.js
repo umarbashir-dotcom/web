@@ -5,7 +5,7 @@ import url from "url";
 import books from "./src/routes/books.js"
 import logger from "./src/middlewares/logger.js";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const filename = url.fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 

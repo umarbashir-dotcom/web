@@ -4,7 +4,7 @@ let filter = document.getElementById("filter");
 
 // fetching the books from database
 async function fetchBooks(){
-    const res = await fetch("http://localhost:8000/api/books");
+    const res = await fetch("https://web-oxwu.onrender.com/api/books");
     if(!res.ok)
         return console.log("Failed to fetch!");
 
@@ -32,7 +32,7 @@ async function addItem(e){
     let button = createButton();
     
     let text = document.createTextNode(`${newItem.value}`);
-    const res = await fetch("http://localhost:8000/api/books",{
+    const res = await fetch("https://web-oxwu.onrender.com/api/books",{
         method : "POST",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify({title : text.textContent})
@@ -73,7 +73,7 @@ async function removeItem(e){
     if(e.target.classList.contains("delete")){
         if(confirm("Are you sure?")){
             const deletedItem = e.target.parentElement.firstChild;
-            const res =await fetch("http://localhost:8000/api/books",{
+            const res =await fetch("https://web-oxwu.onrender.com/api/books",{
                 method : "DELETE",
                 headers : {"Content-Type" : "application/json"},
                 body : JSON.stringify({title : deletedItem.textContent})
