@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} | Chatbot Page
+{%endblock%}
+
+{%block content%}
+    <h1 class="bg-dark text-light text-center p-4">My Chatbot</h1>
+    <div class="card">
+        <div class="card-body">
+            <!-- User input -->
+            <div class="mb-3">
+                {% csrf_token %}
+                <label for="userPrompt" class="form-label">Enter your prompt</label>
+                <textarea id="userPrompt" class="form-control" rows="3" placeholder="Type your question here..."></textarea>
+            </div>
+            <button id="askBtn" class="btn btn-primary">Ask AI</button>
+
+            <!-- Answer box -->
+            <div class="mt-4">
+                <label class="form-label">AI Answer</label>
+                <div id="aiAnswer" class="form-control bg-white" style="height: auto; overflow-y:auto; white-space:pre-wrap;">
+                <!-- AI answer will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const input = document.getElementById("userPrompt")
+        const button = document.getElementById("askBtn")
+        const answer = document.getElementById("aiAnswer")
+
+        const getAnswer = async () =>{
+            answer.style.color = 'grey';
+            answer.textContent = "Thinking..."
+            
+            // answer.innerHTML = "Thinking....."
+            const promptText = input.value;
+            const res = await fetch("http://127.0.0.1:8000/myapi/chat/",
+            {method : "POST",
+            headers : {"Content-type" : "application/json"},
+            body : JSON.stringify({"prompt":promptText})
+            });
+            const result = await res.text()
+            answer.style.color = 'black';
+            answer.innerHTML = result;
+
+        };
+        button.addEventListener('click',getAnswer)
+    </script>
+{%endblock%}
