@@ -34,7 +34,7 @@
             
             // answer.innerHTML = "Thinking....."
             const promptText = input.value;
-            const res = await fetch("http://127.0.0.1:8000/myapi/chat/",
+            const res = await fetch("https://mychatbot-gnkt.onrender.com/myapi/chat/",
             {method : "POST",
             headers : {"Content-type" : "application/json"},
             body : JSON.stringify({"prompt":promptText})
