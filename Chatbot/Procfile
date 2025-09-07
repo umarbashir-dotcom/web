@@ -1,1 +1,1 @@
-web : gunicorn Chatbot.wsgi:application
+web: bash -lc "python manage.py migrate --noinput &&  gunicorn Chatbot.wsgi:application"
