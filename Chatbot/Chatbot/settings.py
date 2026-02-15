@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv("SECRET_KEY","fallback-secret")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["mychatbot-gnkt.onrender.com","127.0.0.1:8000/"]
+ALLOWED_HOSTS = ["mychatbot-gnkt.onrender.com","127.0.0.1","localhost"]
 
 
 # Application definition

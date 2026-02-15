@@ -30,11 +30,11 @@ def chat(request):
                 "content": prompt
             }
         ],
-        "model": "google/gemma-2-2b-it:nebius"
+        "model": "deepseek-ai/DeepSeek-V3-0324"
     })
 
     # print(response["choices"][0]["message"])
-    # print(response)
+    print(response)
     answer = response["choices"][0]["message"]["content"]
     return HttpResponse(answer)
 

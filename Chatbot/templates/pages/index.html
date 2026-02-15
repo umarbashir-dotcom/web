@@ -29,19 +29,24 @@
         const answer = document.getElementById("aiAnswer")
 
         const getAnswer = async () =>{
-            answer.style.color = 'grey';
-            answer.textContent = "Thinking..."
-            
-            // answer.innerHTML = "Thinking....."
-            const promptText = input.value;
-            const res = await fetch("https://mychatbot-gnkt.onrender.com/myapi/chat/",
-            {method : "POST",
-            headers : {"Content-type" : "application/json"},
-            body : JSON.stringify({"prompt":promptText})
-            });
-            const result = await res.text()
-            answer.style.color = 'black';
-            answer.innerHTML = result;
+            try{
+                answer.style.color = 'grey';
+                answer.textContent = "Thinking..."
+                console.log('something')
+                const promptText = input.value;
+                
+                const res = await fetch("https://mychatbot-gnkt.onrender.com/myapi/chat/",
+                {method : "POST",
+                headers : {"Content-type" : "application/json"},
+                body : JSON.stringify({"prompt":promptText})
+                });
+                const result = await res.text()
+                answer.style.color = 'black';
+                answer.innerHTML = result;
+            } catch (err) {
+                answer.textContent = "Error! contacting server. Please try later.";
+                console.error(err);
+            }
 
         };
         button.addEventListener('click',getAnswer)
